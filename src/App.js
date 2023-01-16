@@ -1,5 +1,10 @@
+import "./App.css"
+import MemoryGamePlayGround from "./components/MemoryGamePlayGround";
+
 export default function App() {
   return (
-    <div className="App"></div>
+    <div className="App">
+      <MemoryGamePlayGround />
+    </div>
   )
 }
