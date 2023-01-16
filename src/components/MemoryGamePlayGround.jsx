@@ -165,6 +165,29 @@ export default function MemoryGamePlayGround() {
   }, [cards, choosenCards, score, choosenCardsIds])
 
   useEffect(() => {
+    let i
+
+    for(i = 0; i < cards.length; i++){
+      if(cards[i].show){
+        break
+      }
+    }
+
+    if(i === cards.length){
+      setTimeout(() => {
+        const sortedCards = cardsArray.sort(() => 0.5 - Math.random())
+        setCards(sortedCards)
+        setScore(0)
+ 
+        for(let j = 0; j < cards.length; j++){
+          const e = document.getElementsByClassName(j)
+          e[0].setAttribute('src', Blank)
+        }
+      }, [2000])
+    }
+  }, [cards])
+
+  useEffect(() => {
     const sortedCards = cardsArray.sort(() => 0.5 - Math.random())
     setCards(sortedCards)
   }, [])
@@ -173,7 +196,7 @@ export default function MemoryGamePlayGround() {
     <div className="board">
       <h3 className="score">Score {score}</h3>
       <div className="cardsBody">
-        {cards?.map((card, i) => {
+        {cards.map((card, i) => {
           return (
             <div className="card" onClick={() => filpCard(i)} key={i}>
               <img src={Blank} className={i} alt={card.name} />
